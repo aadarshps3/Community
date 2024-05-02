@@ -1,0 +1,35 @@
+{% extends 'admintemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Volunteer Register Form</h3>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ u_form|crispy }}
+            <div class="form-group">
+                {{ form.name|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.mobile_number|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                {{ form.area|as_crispy_field }}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.availability.id_for_label }}">Availability</label>
+                <select class="form-control" id="{{ form.availability.id_for_label }}"
+                    name="{{ form.availability.name }}">
+                    {% for value, text in form.availability.field.choices %}
+                    <option value="{{ value }}">{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                {{form.profile_picture|as_crispy_field}}
+            </div>
+            <button type="submit" class="btn btn-secondary">submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

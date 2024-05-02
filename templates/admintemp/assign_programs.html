@@ -1,0 +1,31 @@
+{% extends 'admintemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Approve Request</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.volunteer.id_for_label }}">Volunteer</label>
+                <select class="form-control" id="{{ form.volunteer.id_for_label }}"
+                    name="{{ form.volunteer.name }}">
+                    {% for value, text in form.volunteer.field.choices %}
+                    <option value="{{ value }}">{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="{{ form.status.id_for_label }}">Status</label>
+                <select class="form-control" id="{{ form.status.id_for_label }}"
+                    name="{{ form.status.name }}">
+                    {% for value, text in form.status.field.choices %}
+                    <option value="{{ value }}">{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Approve</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

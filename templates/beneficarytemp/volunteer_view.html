@@ -1,0 +1,39 @@
+{% extends 'beneficarytemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Volunteers</h3>
+        {% if vol %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Phone No.</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in vol %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td><img src="{{i.profile_picture.url}}"></td>
+                    <td>{{i.user.email}}</td>
+                    <td>{{i.name}}</td>
+                    <td>{{i.mobile_number}}</td>
+                    <td>{{i.area}}</td>
+                    <td>{{i.availability}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No users available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

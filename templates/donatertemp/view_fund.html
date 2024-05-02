@@ -1,0 +1,33 @@
+{% extends 'donatertemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Your contributions</h3>
+        {% if data %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Donation Type</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{i.donation_type}}</td>
+                    <td>{{i.amount}}</td>
+                    <td>{{i.created_on}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>No Depost data available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

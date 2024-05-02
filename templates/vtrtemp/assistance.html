@@ -1,0 +1,38 @@
+{% extends 'vtrtemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Assistances</h3>
+        {% if data %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Benefeciaries</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Detials</th>
+                    <th scope="col">status</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for i in data %}
+                <tr>
+                    <th scope="row">{{ forloop.counter }}</th>
+                    <td>{{i.beneficiary}}</td>
+                    <td>{{i.assistance_type}}</td>
+                    <td>{{i.assistance_details}}</td>
+                    <td>{{i.status}}</td>
+                    <td>{{i.created_on}}</td>
+                    <td><a  style="color:red; text-decoration:none;font-size:25px;" href="{% url 'assistance-volunteer-status' i.id  %}">&#10004;</a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>Not available.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'beneficarytemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Assistance Request Form</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{u_form|crispy}}
+            {{form|crispy}}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

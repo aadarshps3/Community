@@ -1,0 +1,22 @@
+{% extends 'vtrtemp/index.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        <h3 class="card-title">Volunteer Status Update  Form</h3>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.status.id_for_label }}">Status</label>
+                <select class="form-control" id="{{ form.status.id_for_label }}"
+                    name="{{ form.status.name }}">
+                    {% for value, text in form.status.field.choices %}
+                    <option value="{{ value }}">{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
